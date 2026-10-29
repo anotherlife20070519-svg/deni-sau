@@ -35,6 +35,7 @@ const recipe = (r) => `
     <h4>Қалай дайындау керек</h4>
     <ol class="steps">${r.steps.map((x) => `<li>${esc(x)}</li>`).join("")}</ol>
     ${r.note ? `<div class="rnote">${esc(r.note)}</div>` : ""}
+    ${r.basis ? `<div class="rbasis"><span class="label">Негізі</span> ${esc(r.basis)}</div>` : ""}
   </article>`;
 
 const TABS = [

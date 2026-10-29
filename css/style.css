@@ -303,6 +303,8 @@ footer .small { font: 13px/1.6 var(--label); color: #968c74; grid-column: 1 / -1
 .recipe ul.ingr { list-style: none; padding: 0; margin: 0 0 22px; display: grid; gap: 6px; }
 .recipe ul.ingr li { padding-left: 22px; position: relative; }
 .recipe ul.ingr li::before { content: ""; position: absolute; left: 4px; top: 11px; width: 7px; height: 7px; border: 1.5px solid var(--ochre); transform: rotate(45deg); }
+.recipe .rbasis { margin-top: 16px; padding-top: 12px; border-top: 1px dashed var(--line); font: 14px/1.5 var(--label); color: var(--ink-soft); }
+.recipe .rbasis .label { margin-right: 6px; color: var(--sage-dark); }
 .recipe .rnote { margin-top: 6px; font-size: 15px; color: var(--clay); font-style: italic; }
 ul.caution { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
 ul.caution li { padding: 12px 16px 12px 44px; background: var(--clay-bg); border-left: 3px solid var(--clay); position: relative; font-size: 16px; }
