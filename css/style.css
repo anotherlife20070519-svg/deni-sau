@@ -309,6 +309,12 @@ ul.caution li { padding: 12px 16px 12px 44px; background: var(--clay-bg); border
 ul.caution li::before { content: "!"; position: absolute; left: 16px; top: 11px; font: 700 18px/1 var(--display); color: var(--clay); }
 .word { background: var(--card); border: 1px solid var(--line); padding: 24px 28px; font-size: 17px; }
 .word + .word { margin-top: 14px; }
+.refs { margin-top: 8px; font: 13px/1.5 var(--label); color: var(--ink-faint); }
+.refs summary { cursor: pointer; width: max-content; }
+.refs summary:hover { color: var(--ink-soft); }
+.refs ol { margin: 10px 0 0; padding-left: 18px; }
+.refs li { margin-bottom: 6px; }
+.refs a { color: var(--ink-faint); }
 .p-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; border-top: 1px solid var(--line); padding: 26px 0 70px; }
 .p-nav a { text-decoration: none; color: var(--ink); }
 .p-nav a span { display: block; font: 13px var(--label); color: var(--ink-faint); margin-bottom: 4px; }

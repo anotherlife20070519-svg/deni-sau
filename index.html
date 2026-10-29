@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=PT+Sans:wght@400;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-  <link rel="stylesheet" href="css/style.css?v=4">
+  <link rel="stylesheet" href="css/style.css?v=5">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Ccircle cx='22' cy='22' r='21' fill='%233d4c2a'/%3E%3Cpath d='M22 32C22 22 26 14 32 14S40 20 36 23 30 22 32 20M22 32C22 22 18 14 12 14S4 20 8 23 14 22 12 20' fill='none' stroke='%23f3ecdc' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E">
 </head>
 <body>
@@ -36,7 +36,6 @@
       <a href="#adister">Дайындау</a>
       <a href="#karta">Шипажай</a>
       <a href="#sozdik">Сөздік</a>
-      <a href="#test">Тест</a>
     </nav>
     <button class="menu-btn" id="menuBtn" aria-label="Мәзір" aria-expanded="false">
       <svg width="22" height="16" viewBox="0 0 22 16"><path d="M0 1h22M0 8h22M0 15h22" stroke="currentColor" stroke-width="1.6"/></svg>
@@ -60,7 +59,6 @@
         <div class="hero-stats">
           <div><b id="statPlants">10</b><span>өсімдік</span></div>
           <div><b id="statMethods">5</b><span>дайындау әдісі</span></div>
-          <div><b id="statSources">20</b><span>дереккөз</span></div>
         </div>
       </div>
       <figure class="sheet" style="margin:0">
@@ -190,35 +188,6 @@
     </div>
   </section>
 
-  <!-- VI. Тест -->
-  <section class="block alt" id="test">
-    <div class="wrap">
-      <div class="sec-head reveal">
-        <div class="sec-num">VI</div>
-        <div>
-          <div class="label">Өзіңді тексер</div>
-          <h2>Шөп танисың ба?</h2>
-          <p>Сайтты оқып шықтыңыз ба? Сегіз сұраққа жауап беріп, біліміңізді тексеріңіз.</p>
-        </div>
-      </div>
-      <div class="quiz" id="quiz"></div>
-    </div>
-  </section>
-
-  <!-- Дереккөздер -->
-  <section class="block" id="derekkoz">
-    <div class="wrap">
-      <div class="sec-head">
-        <div class="sec-num">§</div>
-        <div>
-          <div class="label">Дереккөздер</div>
-          <h2>Әдебиет және суреттер</h2>
-          <p>Сайттағы мәліметтер халықаралық медициналық ұйымдардың монографияларына, рецензияланған ғылыми шолуларға және «Флора Казахстана» анықтамалығына сүйенеді. Ботаникалық суреттер — Wikimedia Commons-тағы қоғамдық игілік немесе ашық лицензиялы еңбектер.</p>
-        </div>
-      </div>
-      <ol class="sources" id="sources"></ol>
-    </div>
-  </section>
 </main>
 
 <footer>
@@ -230,12 +199,12 @@
     <div>
       <p><b style="color:#f3ecdc">Ескерту.</b> Сайттағы мәлімет дәрігердің кеңесін алмастырмайды. Шөптерді ем ретінде қолданбас бұрын маманға жүгініңіз.</p>
     </div>
-    <div class="small">«Қазақ тілін қолдануға арналған IT өнімдер» облыстық байқауына, 2026. Суреттер: Wikimedia Commons (авторлары әр суреттің астында көрсетілген). Карта: © OpenStreetMap contributors.</div>
+    <div class="small">«Қазақ тілін қолдануға арналған IT өнімдер» облыстық байқауына, 2026. Суреттер: Wikimedia Commons, авторлары мен лицензиялары әр өсімдіктің бетінде көрсетілген. Карта: © OpenStreetMap contributors.</div>
   </div>
 </footer>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="js/data.js?v=4"></script>
-<script src="js/app.js?v=4"></script>
+<script src="js/data.js?v=5"></script>
+<script src="js/app.js?v=5"></script>
 </body>
 </html>

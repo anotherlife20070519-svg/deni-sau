@@ -118,84 +118,8 @@ if (window.L) {
 $("#gloss").innerHTML = GLOSSARY.map(([kk, ru, d]) => `
   <div class="g-item"><b>${esc(kk)}</b><span class="ru">${esc(ru)}</span><span>${esc(d)}</span></div>`).join("");
 
-/* ---------- Тест ---------- */
-const shuffle = (a) => a.map((v) => [Math.random(), v]).sort((x, y) => x[0] - y[0]).map((x) => x[1]);
-function pick(arr, n, not) {
-  return shuffle(arr.filter((x) => x !== not)).slice(0, n);
-}
-function buildQuiz() {
-  const names = PLANTS.map((p) => p.kk);
-  const picQs = shuffle(PLANTS.filter((p) => p.id !== "adyraspan")).slice(0, 4).map((p) => ({
-    img: COMMONS(cardImg(p).file, 400),
-    q: "Суреттегі қай өсімдік?",
-    a: p.kk,
-    opts: shuffle([p.kk, ...pick(names, 3, p.kk)]),
-    why: `Бұл — ${p.kk} (${p.lat}). ${p.short}`,
-  }));
-  const factQs = [
-    { q: "Қай өсімдікті ішке қабылдауға мүлдем болмайды?", a: "Адыраспан", o: ["Жалбыз", "Түймедақ", "Бақбақ"], why: "Адыраспанның тұқымы мен шөбі улы — оны тек аластау рәсімінде түтін ретінде қолданады." },
-    { q: "Glycyrrhiza деген латын атауы қалай аударылады?", a: "Тәтті тамыр", o: ["Ащы шөп", "Дала гүлі", "Түйе тікенегі"], why: "Грекше glykys — «тәтті», rhiza — «тамыр». Бұл — мияның атауы." },
-    { q: "Тамыр мен қабықтан көбіне не дайындайды?", a: "Қайнатпа", o: ["Тұнба", "Аластау", "Салат"], why: "Қатты бөліктер пайдалы заттарын баяу береді, сондықтан оларды суда қайнатады." },
-    { q: "Ежелгі орыс жылнамасында жусан қалай аталады?", a: "Евшан", o: ["Шалфей", "Ромашка", "Кендырь"], why: "«Евшан» — түркі тіліндегі «емшан» сөзі. Атрақ хан туралы аңызда осы шөп айтылады." },
-    { q: "Жаңақорған шипажайы қай жылы ашылған?", a: "1918", o: ["1887", "1956", "1991"], why: "Теріскен көлінің балшығы ертеден белгілі болса да, шипажай 1918 жылы ашылған." },
-    { q: "«Шипагерлік баян» еңбегінің авторы кім?", a: "Өтейбойдақ Тілеуқабылұлы", o: ["Қорқыт Ата", "Әл-Фараби", "Абай Құнанбайұлы"], why: "Шипагер Өтейбойдақ оны XV ғасырда Жәнібек ханның тапсырмасымен жазған." },
-    { q: "Кендірдің сабағынан не алынған?", a: "Берік талшық (жіп)", o: ["Қызыл бояу", "Тәтті шырын", "Жақпа май"], why: "Кендір талшығынан арқан, жіп, тор тоқылған." },
-    { q: "«Тұнба» сөзінің орысша баламасы қандай?", a: "Настой", o: ["Отвар", "Мазь", "Экстракт"], why: "Тұнба — настой, қайнатпа — отвар, жақпа май — мазь." },
-  ].map((x) => ({ q: x.q, a: x.a, opts: shuffle([x.a, ...x.o]), why: x.why }));
-  return shuffle([...picQs, ...shuffle(factQs).slice(0, 4)]);
-}
-let quiz, qi, score;
-function startQuiz() {
-  quiz = buildQuiz();
-  qi = 0;
-  score = 0;
-  renderQ();
-}
-function renderQ() {
-  const box = $("#quiz");
-  if (qi >= quiz.length) {
-    const msg = score >= 7 ? "Керемет! Сіз нағыз шипагерсіз." : score >= 4 ? "Жақсы нәтиже! Біраз өсімдікті қайта қарап шығыңыз." : "Өсімдіктер бөлімін тағы бір оқып шығыңыз — келесі жолы міндетті түрде шығады!";
-    box.innerHTML = `<div class="q-result"><div class="label">Нәтиже</div><b>${score} / ${quiz.length}</b><p>${msg}</p>
-      <button class="btn primary" id="qAgain">Қайта бастау</button></div>`;
-    $("#qAgain").onclick = startQuiz;
-    return;
-  }
-  const x = quiz[qi];
-  box.innerHTML = `
-    <div class="q-top"><span class="label">Сұрақ ${qi + 1} / ${quiz.length}</span><span class="label">Ұпай: ${score}</span></div>
-    <div class="q-bar"><i style="width:${(qi / quiz.length) * 100}%"></i></div>
-    <div class="q-body${x.img ? "" : " noimg"}">
-      ${x.img ? `<div class="q-img"><img src="${x.img}" alt=""></div>` : ""}
-      <div>
-        <div class="q-text">${esc(x.q)}</div>
-        <div class="q-opts">${x.opts.map((o) => `<button class="q-opt">${esc(o)}</button>`).join("")}</div>
-        <div class="q-why" aria-live="polite"></div>
-      </div>
-    </div>`;
-  box.querySelectorAll(".q-opt").forEach((b) => b.addEventListener("click", () => {
-    const right = b.textContent === x.a;
-    if (right) score++;
-    box.querySelectorAll(".q-opt").forEach((o) => {
-      o.disabled = true;
-      if (o.textContent === x.a) o.classList.add("ok");
-    });
-    if (!right) b.classList.add("bad");
-    $(".q-why", box).innerHTML = `${right ? "<b>Дұрыс!</b> " : "<b>Қате.</b> "}${esc(x.why)}
-      <div class="q-next"><button class="btn primary" id="qNext">${qi + 1 < quiz.length ? "Келесі сұрақ" : "Нәтижені көру"}</button></div>`;
-    $("#qNext").onclick = () => { qi++; renderQ(); };
-  }));
-}
-startQuiz();
-
-/* ---------- Дереккөздер ---------- */
-const imgCredits = PLANTS.flatMap((p) => [p.img, p.plate].filter(Boolean).map((im) => ({
-  t: `Сурет: ${p.kk} — ${im.credit}. ${im.license}. Wikimedia Commons.`, url: COMMONS_PAGE(im.file),
-})));
-const allSources = [...Object.values(SRC), ...imgCredits];
-$("#sources").innerHTML = allSources.map((s) => `<li>${esc(s.t)}${s.url ? ` <a href="${s.url}" target="_blank" rel="noopener">сілтеме</a>` : ""}</li>`).join("");
 $("#statPlants").textContent = PLANTS.length;
 $("#statMethods").textContent = METHODS.length;
-$("#statSources").textContent = Object.keys(SRC).length;
 
 /* ---------- Анимация және мәзір белгісі ---------- */
 const io = "IntersectionObserver" in window

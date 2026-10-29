@@ -42,7 +42,6 @@ const TABS = [
   ["dayindau", "Дайындау"],
   ["tarih", "Тарихы мен тілі"],
   ["saqtyq", "Сақтық"],
-  ["derek", "Дереккөздер"],
 ];
 
 $("#page").innerHTML = `
@@ -99,12 +98,10 @@ $("#page").innerHTML = `
         </div>
       </section>
 
-      <section class="p-sec" id="derek">
-        <h2>Дереккөздер</h2>
-        <ol class="sources" style="columns:1">
-          ${p.sources.map((k) => SRC[k]).map((s) => `<li>${esc(s.t)}${s.url ? ` <a href="${s.url}" target="_blank" rel="noopener">сілтеме</a>` : ""}</li>`).join("")}
-        </ol>
-      </section>
+      <details class="refs">
+        <summary>Дереккөздер</summary>
+        <ol>${p.sources.map((k) => SRC[k]).map((s) => `<li>${esc(s.t)}${s.url ? ` <a href="${s.url}" target="_blank" rel="noopener">сілтеме</a>` : ""}</li>`).join("")}</ol>
+      </details>
     </div>
   </div>
   <nav class="p-nav">
