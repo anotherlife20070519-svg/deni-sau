@@ -16,15 +16,38 @@
 .story .chs { stroke: var(--chapan); }
 .story svg { --skin: #d8a27a; --chapan: #2f7f7a; }
 .s1 { --skin: #d9cdb6; }
-.s4 { --skin: #d9cdb6; --chapan: #7f8b88; }
-.s4.on { animation: heal 3.2s 0.6s ease forwards; }
+.s4 .heal { --skin: #d9cdb6; --chapan: #7f8b88; }
+.s4.on .heal { animation: heal 3.6s 1.2s ease forwards; }
 @keyframes heal { to { --skin: #d8a27a; --chapan: #2f7f7a; } }
 .s4 .gloom { opacity: 0.22; }
-.s4.on .gloom { animation: fadeout 3.2s 0.6s ease forwards; }
+.s4.on .gloom { animation: fadeout 3.6s 1.2s ease forwards; }
 @keyframes fadeout { to { opacity: 0; } }
 
-.scene { opacity: 0; transition: opacity 0.8s ease; pointer-events: none; }
+/* Сахналар ауысуы: жұмсақ шеңбер ашылуы және «камера» баяу жақындауы */
+.scene { opacity: 0; transition: opacity 1.4s cubic-bezier(.4, 0, .2, 1); pointer-events: none; transform-box: view-box; transform-origin: 50% 58%; }
 .scene.on { opacity: 1; }
+.scene.on.enter { animation: reveal 1.6s cubic-bezier(.4, 0, .2, 1) both, kb var(--kb, 9s) linear both; }
+@keyframes reveal { from { clip-path: circle(12% at 50% 58%); } to { clip-path: circle(85% at 50% 58%); } }
+@keyframes kb { from { transform: scale(1.0); } to { transform: scale(1.07); } }
+.story.paused .scene, .story.paused .scene * { animation-play-state: paused !important; }
+
+/* Кейіпкерлердің шығуы */
+.walk-in { opacity: 0; }
+.s2.on .walk-in { animation: walkin 2.6s 0.5s cubic-bezier(.2, .7, .2, 1) both; }
+@keyframes walkin { from { translate: 170px 0; opacity: 0; } 30% { opacity: 1; } to { translate: 0 0; opacity: 1; } }
+.s2.on .plant { animation: grow 2s 0.3s cubic-bezier(.2, .8, .2, 1) both, sway 5s 2.3s ease-in-out infinite; }
+@keyframes grow { from { scale: 1 0; } to { scale: 1 1; } }
+.s3.on .fire { animation: fadein 1.2s 0.3s ease both; }
+@keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+.s1.on .puffs { animation: fadein 1s 1.2s ease both; }
+.sunrise { opacity: 0; }
+.s5.on .sunrise { animation: rise 2.8s 0.2s cubic-bezier(.2, .7, .2, 1) both; }
+@keyframes rise { from { translate: 0 150px; opacity: 0; } 40% { opacity: 1; } to { translate: 0 0; opacity: 1; } }
+.hero-man { transform-box: fill-box; transform-origin: 50% 100%; }
+.s5.on .hero-man { animation: popin 1s 0.9s cubic-bezier(.3, 1.5, .5, 1) both, hop 2.4s 1.9s ease-in-out infinite; }
+@keyframes popin { from { scale: 0.5; opacity: 0; } to { scale: 1; opacity: 1; } }
+.fade-late { opacity: 0; }
+.s5.on .fade-late { animation: fadein 1.2s 1.6s ease both; }
 
 /* Сахна анимациялары тек белсенді сахнада жүреді */
 .scene * { animation-play-state: paused; }
@@ -94,7 +117,7 @@
 .hero-man { animation: hop 2.4s ease-in-out infinite; }
 @keyframes hop { 0%, 100% { translate: 0 0; } 50% { translate: 0 -6px; } }
 .motto { opacity: 0; }
-.s5.on .motto { animation: chip 0.9s 0.8s ease forwards; }
+.s5.on .motto { animation: chip 1.2s 2.4s ease forwards; }
 
 /* Ойнату батырмасы */
 .story-play {
@@ -115,14 +138,14 @@
 .story-text .label { color: var(--turq); }
 .story-nav { display: flex; align-items: center; gap: 12px; }
 .story-nav .btn { padding: 12px 18px; }
-.story-dots { display: flex; gap: 6px; }
-.story-dots button { width: 28px; height: 6px; border-radius: 3px; border: 0; background: var(--paper-3); cursor: pointer; padding: 0; position: relative; overflow: hidden; }
-.story-dots button.done { background: var(--saffron); }
-.story-dots button.on { background: var(--paper-3); }
-.story-dots button.on i { position: absolute; inset: 0; background: var(--turq); transform-origin: left; transform: scaleX(0); }
-.story-dots button.on.run i { animation: fill var(--dur, 7s) linear forwards; }
-.story-dots button.on.stop i { transform: scaleX(1); }
-@keyframes fill { to { transform: scaleX(1); } }
+/* Үздіксіз прогресс жолағы */
+.story-progress { position: absolute; left: 0; right: 0; bottom: 0; display: flex; gap: 4px; padding: 0 70px 0 0; }
+.story-progress button { flex-basis: 0; height: 18px; border: 0; padding: 0; background: none; cursor: pointer; display: flex; align-items: flex-end; }
+.story-progress i { display: block; width: 100%; height: 5px; background: rgba(251, 248, 239, 0.6); position: relative; overflow: hidden; }
+.story-progress i::after { content: ""; position: absolute; inset: 0; background: var(--saffron); transform: scaleX(var(--p, 0)); transform-origin: left; }
+.story-progress button:hover i { background: rgba(251, 248, 239, 0.9); }
+.story-text { transition: opacity 0.28s ease, transform 0.28s ease; }
+.story-text.swap { opacity: 0; transform: translateY(6px); }
 .story-note { font: 14px/1.55 var(--label); color: var(--ink-faint); margin: 14px 4px 0; }
 
 @media (max-width: 760px) {

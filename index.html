@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=PT+Sans:wght@400;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-  <link rel="stylesheet" href="css/style.css?v=8">
-  <link rel="stylesheet" href="css/story.css?v=8">
+  <link rel="stylesheet" href="css/style.css?v=9">
+  <link rel="stylesheet" href="css/story.css?v=9">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Ccircle cx='22' cy='22' r='21' fill='%233d4c2a'/%3E%3Cpath d='M22 32C22 22 26 14 32 14S40 20 36 23 30 22 32 20M22 32C22 22 18 14 12 14S4 20 8 23 14 22 12 20' fill='none' stroke='%23f3ecdc' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E">
 </head>
 <body>
@@ -86,7 +86,7 @@
         <div>
           <div class="label">Анимациялық әңгіме</div>
           <h2>Ауырып, жазылды</h2>
-          <p>Ерланға суық тиіп, жөтел басталды. Анасы Сыр бойынан мия тамырын тауып, қайнатпа дайындайды. Әңгімедегі рецепт — EMA монографиясындағы нақты мөлшер.</p>
+          <p>Ерланға суық тиіп, жөтел басталды. Анасы Сыр бойынан мия тамырын тауып, қайнатпа дайындайды. Әңгіме өзі ойнайды — тек қараңыз. Ондағы рецепт — EMA монографиясындағы нақты мөлшер.</p>
         </div>
       </div>
 
@@ -206,7 +206,7 @@
                   <ellipse cx="336" cy="161" rx="5" ry="4"/><ellipse cx="337" cy="153" rx="4" ry="4"/>
                 </g>
               </g>
-              <g transform="translate(476 188)">
+              <g class="walk-in" transform="translate(476 188)">
                 <use href="#st-elderbody"/>
                 <path d="M-12 46Q-30 64 -44 82" fill="none" stroke="#2b2a22" stroke-width="13" stroke-linecap="round"/>
                 <path d="M-12 46Q-30 64 -44 82" fill="none" stroke="#4a3a2a" stroke-width="9" stroke-linecap="round"/>
@@ -268,6 +268,7 @@
 
             <!-- 4. Ем ішу -->
             <g class="scene s4" data-i="3">
+              <g class="heal">
               <rect width="800" height="450" fill="#ead9b4"/>
               <path d="M400 -160L-60 72M400 -160L60 72M400 -160L180 72M400 -160L300 72M400 -160L400 72M400 -160L500 72M400 -160L620 72M400 -160L740 72M400 -160L860 72" stroke="#a26b3c" stroke-width="6"/>
               <rect y="72" width="800" height="262" fill="#efe2c6"/>
@@ -300,12 +301,13 @@
               </g>
               </g>
               <rect class="gloom" width="800" height="450" fill="#5c6b78"/>
+              </g>
             </g>
 
             <!-- 5. Жазылды -->
             <g class="scene s5" data-i="4">
               <rect width="800" height="450" fill="#f6e3b5"/>
-              <g transform="translate(660 104)">
+              <g class="sunrise" transform="translate(660 104)">
                 <g class="rays" stroke="#f0b84a" stroke-width="5" stroke-linecap="round">
                   <path d="M0 -70V-86M0 70V86M-70 0H-86M70 0H86M49 -49L61 -61M-49 49L-61 61M49 49L61 61M-49 -49L-61 -61"/>
                 </g>
@@ -345,7 +347,7 @@
                 <circle cx="-20" cy="12" r="5" fill="#e07c63" opacity=".45"/>
                 <circle cx="20" cy="12" r="5" fill="#e07c63" opacity=".45"/>
               </g>
-              <g transform="translate(560 212)">
+              <g class="fade-late" transform="translate(560 212)">
                 <use href="#st-elderbody"/>
                 <use href="#st-elderhead"/>
               </g>
@@ -355,17 +357,16 @@
           <button class="story-play" id="storyPlay" aria-label="Тоқтату">
             <svg viewBox="0 0 20 20" aria-hidden="true"><path class="i-pause" d="M6 4h3v12H6zM11 4h3v12h-3z"/><path class="i-play" d="M6 4l10 6-10 6z"/></svg>
           </button>
+          <div class="story-progress" id="storyProg"></div>
         </div>
         <div class="story-bar">
           <div class="story-text" aria-live="polite">
             <div class="label" id="storyStep">1 / 5</div>
             <h3 id="storyH">Ауырып қалды</h3>
-            <p id="storyP"></p>
+            <p id="storyP">Күз түсіп, Сыр бойында салқын жел соқты. Ерланға суық тиіп, ол қатты жөтеле бастады.</p>
           </div>
           <div class="story-nav">
-            <button class="btn" id="storyPrev" aria-label="Алдыңғы">←</button>
-            <div class="story-dots" id="storyDots"></div>
-            <button class="btn primary" id="storyNext">Келесі →</button>
+            <button class="btn" id="storyReplay">↺ Басынан көру</button>
           </div>
         </div>
         <p class="story-note">Мия тамыры қайнатпасының мөлшері — EMA монографиясы бойынша. Жөтел бір аптада басылмаса немесе қызу көтерілсе, дәрігерге көріну керек. Мия 18 жасқа дейінгілерге, жүкті және бала емізетін әйелдерге, қан қысымы жоғары адамдарға ұсынылмайды. <a href="plant.html?id=miya#dayindau">Толық рецепт →</a></p>
@@ -552,8 +553,8 @@
 </footer>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="js/data.js?v=8"></script>
-<script src="js/app.js?v=8"></script>
-<script src="js/story.js?v=8"></script>
+<script src="js/data.js?v=9"></script>
+<script src="js/app.js?v=9"></script>
+<script src="js/story.js?v=9"></script>
 </body>
 </html>
