@@ -159,7 +159,7 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .scene * { animation: none !important; }
-  .chip, .motto { opacity: 1; }
+  .chip, .motto, .walk-in, .sunrise, .fade-late { opacity: 1; }
   .root { stroke-dashoffset: 0; }
   .s4 { --skin: #d8a27a; --chapan: #2f7f7a; }
   .s4 .gloom { opacity: 0; }

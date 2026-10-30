@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=PT+Sans:wght@400;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-  <link rel="stylesheet" href="css/style.css?v=9">
-  <link rel="stylesheet" href="css/story.css?v=9">
+  <link rel="stylesheet" href="css/style.css?v=10">
+  <link rel="stylesheet" href="css/story.css?v=10">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Ccircle cx='22' cy='22' r='21' fill='%233d4c2a'/%3E%3Cpath d='M22 32C22 22 26 14 32 14S40 20 36 23 30 22 32 20M22 32C22 22 18 14 12 14S4 20 8 23 14 22 12 20' fill='none' stroke='%23f3ecdc' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E">
 </head>
 <body>
@@ -106,32 +106,89 @@
                 <rect width="40" height="14" fill="#2f7f7a"/>
                 <path d="M20 13C20 9 22 5 26 5S31 8 29 10 26 9 27 8M20 13C20 9 18 5 14 5S9 8 11 10 14 9 13 8" stroke="#f3ecdc" fill="none" stroke-width="1.3" stroke-linecap="round"/>
               </pattern>
-              <!-- Ерланның басы (центрі 0,0) -->
-              <g id="st-manhead">
-                <ellipse cx="-31" cy="4" rx="6" ry="9" stroke="#2b2a22" stroke-width="2.5"/>
-                <ellipse cx="31" cy="4" rx="6" ry="9" stroke="#2b2a22" stroke-width="2.5"/>
-                <circle r="32" stroke="#2b2a22" stroke-width="2.5"/>
-                <path d="M-31 -8Q-31 -42 0 -42Q31 -42 31 -8Z" fill="#2f5d3a" stroke="#2b2a22" stroke-width="2.5" stroke-linejoin="round"/>
-                <path d="M-15 -22q7.5 -9 15 0q7.5 -9 15 0" fill="none" stroke="#f0c56a" stroke-width="2.2" stroke-linecap="round"/>
-                <path d="M-13 14Q-6 9 0 12Q6 9 13 14" fill="none" stroke="#2b2a22" stroke-width="3.4" stroke-linecap="round"/>
+
+              <!-- Қол (білезік центрі 0,0; түсі <use> элементінен келеді) -->
+              <g id="st-hand">
+                <path d="M-8 -5C-10 3 -7 11 0 12C7 11 10 4 8 -4C6 -9 -6 -10 -8 -5Z" stroke="#2b2a22" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M7 -3C13 -5 15 1 10 6" stroke="#2b2a22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M-4 6v4M0 7v4M4 6v4" stroke="#2b2a22" stroke-width="1.2" opacity=".45" stroke-linecap="round"/>
               </g>
-              <!-- Анасының басы, кимешек (центрі 0,0) -->
-              <g id="st-elderhead">
-                <path d="M-30 18Q-35 -34 0 -38Q35 -34 30 18Q16 36 0 36Q-16 36 -30 18Z" fill="#fbf8ef" stroke="#2b2a22" stroke-width="2.5"/>
-                <path d="M-15 27q7.5 -7 15 0q7.5 -7 15 0" fill="none" stroke="#b5532f" stroke-width="2" stroke-linecap="round"/>
-                <ellipse cx="0" cy="2" rx="16" ry="19" fill="#d6a882" stroke="#2b2a22" stroke-width="2.5"/>
-                <path d="M-25 -10Q0 -52 25 -10Q0 -20 -25 -10Z" fill="#fbf8ef" stroke="#2b2a22" stroke-width="2.5" stroke-linejoin="round"/>
-                <path d="M-9 2q3 -3.5 6 0M3 2q3 -3.5 6 0" fill="none" stroke="#2b2a22" stroke-width="2" stroke-linecap="round"/>
-                <path d="M-5 11Q0 15 5 11" fill="none" stroke="#2b2a22" stroke-width="2" stroke-linecap="round"/>
-                <circle cx="-10" cy="9" r="3.5" fill="#e07c63" opacity=".45"/>
-                <circle cx="10" cy="9" r="3.5" fill="#e07c63" opacity=".45"/>
+
+              <!-- Ерланның басы (бет центрі 0,0; түсі <use class="sk"> арқылы) -->
+              <g id="st-man-head">
+                <path d="M-28 -4C-38 -8 -41 8 -33 15C-31 17 -28 16 -27 13Z" stroke="#2b2a22" stroke-width="2"/>
+                <path d="M28 -4C38 -8 41 8 33 15C31 17 28 16 27 13Z" stroke="#2b2a22" stroke-width="2"/>
+                <path d="M-34 2q4 -2 5 5M34 2q-4 -2 -5 5" fill="none" stroke="#2b2a22" stroke-width="1.4" opacity=".55"/>
+                <path d="M-9 30V48H9V30Z" stroke="#2b2a22" stroke-width="2"/>
+                <path d="M-9 34V48H9V40Z" fill="#000" opacity=".12"/>
+                <path d="M-29 -10C-30 -34 -16 -42 0 -42C16 -42 30 -34 29 -10C29 14 18 36 0 38C-18 36 -29 14 -29 -10Z" stroke="#2b2a22" stroke-width="2.4"/>
+                <path d="M-29 -10C-29 14 -18 36 0 38C-12 31 -20 15 -21 -4Z" fill="#000" opacity=".08"/>
+                <path d="M-29 -15C-30 -4 -28 4 -26 9L-23 -11ZM29 -15C30 -4 28 4 26 9L23 -11Z" fill="#2b2a22"/>
+                <path d="M-30 -14C-31 -46 31 -46 30 -14C14 -20 -14 -20 -30 -14Z" fill="#2f5d3a" stroke="#2b2a22" stroke-width="2.4" stroke-linejoin="round"/>
+                <path d="M-27 -17C-12 -22 12 -22 27 -17" fill="none" stroke="#f0c56a" stroke-width="2.2" stroke-dasharray="1 5" stroke-linecap="round"/>
+                <path d="M-12 -29q6 -8 12 0q6 -8 12 0" fill="none" stroke="#f0c56a" stroke-width="2" stroke-linecap="round"/>
+                <path d="M-21 -36C-14 -41 -4 -42 4 -41" fill="none" stroke="#fff" stroke-width="2.4" opacity=".22" stroke-linecap="round"/>
+                <path d="M-1 0C-3 8 -6 13 -3 15C-1 16 3 16 5 14" fill="none" stroke="#2b2a22" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M-15 22C-9 16 -3 17 0 19C3 17 9 16 15 22C9 21 4 22 0 21C-4 22 -9 21 -15 22Z" fill="#2b2a22"/>
               </g>
-              <!-- Анасының денесі (басының центрінен) -->
-              <g id="st-elderbody">
-                <path d="M-36 152L-19 34L19 34L36 152Z" fill="#b5532f" stroke="#2b2a22" stroke-width="2.5" stroke-linejoin="round"/>
-                <path d="M-19 34L19 34L23 88L-23 88Z" fill="#4a3a2a" stroke="#2b2a22" stroke-width="2.5" stroke-linejoin="round"/>
-                <path d="M-30 128L30 128" stroke="#f0c56a" stroke-width="3"/>
+              <!-- Ерланның бет әлпеттері -->
+              <g id="st-face-sick">
+                <path d="M-20 -9C-15 -10 -11 -12 -7 -15M20 -9C15 -10 11 -12 7 -15" fill="none" stroke="#2b2a22" stroke-width="2.8" stroke-linecap="round"/>
+                <path d="M-18 -2C-15 -4 -9 -4 -6 -2M18 -2C15 -4 9 -4 6 -2" fill="none" stroke="#2b2a22" stroke-width="2.4" stroke-linecap="round"/>
+                <path d="M-17 -1C-14 1 -10 1 -7 -1M17 -1C14 1 10 1 7 -1" fill="#2b2a22" opacity=".7"/>
+                <path d="M-18 4C-14 6 -10 6 -7 4M18 4C14 6 10 6 7 4" fill="none" stroke="#7d6a8a" stroke-width="2" opacity=".45" stroke-linecap="round"/>
+                <circle cx="1" cy="12" r="5" fill="#e07c63" opacity=".35"/>
+                <ellipse cx="0" cy="28" rx="5.5" ry="6.5" fill="#5a2a22" stroke="#2b2a22" stroke-width="1.6"/>
               </g>
+              <g id="st-face-calm">
+                <path d="M-20 -12C-15 -14 -10 -14 -6 -12M20 -12C15 -14 10 -14 6 -12" fill="none" stroke="#2b2a22" stroke-width="2.8" stroke-linecap="round"/>
+                <path d="M-18 -3C-15 0 -9 0 -6 -3M18 -3C15 0 9 0 6 -3" fill="none" stroke="#2b2a22" stroke-width="2.4" stroke-linecap="round"/>
+                <path d="M-16 -2l-1 3M-12 -1v3M16 -2l1 3M12 -1v3" stroke="#2b2a22" stroke-width="1.3" stroke-linecap="round"/>
+              </g>
+              <g id="st-face-happy">
+                <path d="M-20 -14C-15 -18 -10 -18 -6 -15M20 -14C15 -18 10 -18 6 -15" fill="none" stroke="#2b2a22" stroke-width="2.8" stroke-linecap="round"/>
+                <path d="M-18 -2C-15 -7 -9 -7 -6 -2M18 -2C15 -7 9 -7 6 -2" fill="none" stroke="#2b2a22" stroke-width="2.6" stroke-linecap="round"/>
+                <circle cx="-17" cy="10" r="5.5" fill="#e07c63" opacity=".4"/>
+                <circle cx="17" cy="10" r="5.5" fill="#e07c63" opacity=".4"/>
+                <path d="M-10 25C-6 33 6 33 10 25C5 27 -5 27 -10 25Z" fill="#7a2f22" stroke="#2b2a22" stroke-width="1.8" stroke-linejoin="round"/>
+                <path d="M-6 26.5C-2 27.5 2 27.5 6 26.5" stroke="#fbf8ef" stroke-width="2.2" stroke-linecap="round"/>
+                <path d="M-14 22C-15 25 -14 28 -12 29M14 22C15 25 14 28 12 29" fill="none" stroke="#2b2a22" stroke-width="1.3" opacity=".5" stroke-linecap="round"/>
+              </g>
+
+              <!-- Анасының басы: кимешек пен шылауыш (бет центрі 0,0) -->
+              <g id="st-mom-head">
+                <path d="M-36 4C-40 -30 -24 -46 0 -46C24 -46 40 -30 36 4C40 24 36 44 28 54L-28 54C-36 44 -40 24 -36 4Z" fill="#fbf8ef" stroke="#2b2a22" stroke-width="2.4" stroke-linejoin="round"/>
+                <path d="M-34 10C-34 30 -30 44 -24 52" fill="none" stroke="#c9bfa8" stroke-width="2" stroke-linecap="round"/>
+                <path d="M34 10C34 30 30 44 24 52" fill="none" stroke="#c9bfa8" stroke-width="2" stroke-linecap="round"/>
+                <path d="M-16 28C-14 44 14 44 16 28L19 54H-19Z" fill="#b5532f" stroke="#2b2a22" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M-12 46q6 -6 12 0q6 -6 12 0" fill="none" stroke="#f0c56a" stroke-width="1.8" stroke-linecap="round"/>
+                <circle cx="0" cy="38" r="2.2" fill="#f0c56a"/>
+                <path d="M-19 -6C-20 -24 -10 -30 0 -30C10 -30 20 -24 19 -6C19 12 11 26 0 27C-11 26 -19 12 -19 -6Z" fill="#d6a882" stroke="#2b2a22" stroke-width="2.2"/>
+                <path d="M-19 -6C-19 12 -11 26 0 27C-8 22 -13 10 -13 -2Z" fill="#000" opacity=".08"/>
+                <path d="M-30 -14C-34 -40 -16 -54 0 -54C16 -54 34 -40 30 -14C20 -24 -20 -24 -30 -14Z" fill="#fbf8ef" stroke="#2b2a22" stroke-width="2.4" stroke-linejoin="round"/>
+                <path d="M-26 -25C-14 -34 14 -34 26 -25M-21 -37C-10 -45 10 -45 21 -37" fill="none" stroke="#c9bfa8" stroke-width="2" stroke-linecap="round"/>
+                <path d="M-14 -12C-11 -14 -7 -14 -4 -12M14 -12C11 -14 7 -14 4 -12" fill="none" stroke="#8a7a6a" stroke-width="2" stroke-linecap="round"/>
+                <path d="M-13 -5C-11 -8 -6 -8 -4 -5M13 -5C11 -8 6 -8 4 -5" fill="none" stroke="#2b2a22" stroke-width="2.2" stroke-linecap="round"/>
+                <path d="M-16 -5l-3 -1M-16 -3l-3 1M16 -5l3 -1M16 -3l3 1" stroke="#8a6a50" stroke-width="1.2" stroke-linecap="round"/>
+                <path d="M0 -2C-1 4 -3 8 -1 9C1 10 3 9 4 8" fill="none" stroke="#2b2a22" stroke-width="1.6" stroke-linecap="round"/>
+                <path d="M-6 15C-3 19 3 19 6 15" fill="none" stroke="#2b2a22" stroke-width="2" stroke-linecap="round"/>
+                <path d="M-10 11C-11 14 -10 17 -8 18M10 11C11 14 10 17 8 18" fill="none" stroke="#8a6a50" stroke-width="1.2" stroke-linecap="round"/>
+                <circle cx="-11" cy="7" r="4" fill="#e07c63" opacity=".35"/>
+                <circle cx="11" cy="7" r="4" fill="#e07c63" opacity=".35"/>
+              </g>
+              <!-- Анасының тұрған денесі: көйлек пен камзол -->
+              <g id="st-mom-body">
+                <path d="M-14 202l-14 0q-6 0 -6 5h20ZM14 202l14 0q6 0 6 5h-20Z" fill="#4a3a2a" stroke="#2b2a22" stroke-width="2"/>
+                <path d="M-30 52C-36 100 -44 150 -50 198L50 198C44 150 36 100 30 52Z" fill="#b5532f" stroke="#2b2a22" stroke-width="2.4" stroke-linejoin="round"/>
+                <path d="M-50 198q6.25 8 12.5 0q6.25 8 12.5 0q6.25 8 12.5 0q6.25 8 12.5 0q6.25 8 12.5 0q6.25 8 12.5 0q6.25 8 12.5 0q6.25 8 12.5 0" fill="#9a4426" stroke="#2b2a22" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M30 52C36 100 44 150 50 198L22 198C26 150 24 100 18 60Z" fill="#000" opacity=".12"/>
+                <path d="M-14 140C-16 160 -18 180 -20 196M10 136C12 160 14 180 16 196" fill="none" stroke="#2b2a22" stroke-width="1.6" opacity=".3" stroke-linecap="round"/>
+                <path d="M-30 52C-32 80 -30 110 -26 128L26 128C30 110 32 80 30 52Z" fill="#3f5a3c" stroke="#2b2a22" stroke-width="2.4" stroke-linejoin="round"/>
+                <path d="M-27 56C-29 82 -27 108 -24 124L24 124C27 108 29 82 27 56" fill="none" stroke="#d9a03a" stroke-width="2.2"/>
+                <path d="M0 56V126" stroke="#2b2a22" stroke-width="1.6"/>
+                <g fill="#c9ccd1" stroke="#2b2a22" stroke-width="1"><circle cx="0" cy="70" r="3"/><circle cx="0" cy="86" r="3"/><circle cx="0" cy="102" r="3"/></g>
+              </g>
+
               <g id="st-steam">
                 <path d="M0 0c-8 -10 8 -18 0 -28s8 -18 0 -28" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
               </g>
@@ -147,28 +204,33 @@
               <rect y="334" width="800" height="116" fill="#bfa47a"/>
               <path d="M140 362L660 362L720 450L80 450Z" fill="url(#st-rug)" stroke="#2b2a22" stroke-width="2.5"/>
               <g>
-                <rect x="160" y="318" width="120" height="14" rx="4" fill="#7a4b2a" stroke="#2b2a22" stroke-width="2.5"/>
-                <path d="M172 332v24M268 332v24" stroke="#2b2a22" stroke-width="5"/>
-                <path d="M200 302Q215 320 230 302Z" fill="#fbf8ef" stroke="#2b2a22" stroke-width="2"/>
+                <rect x="150" y="318" width="120" height="14" rx="4" fill="#7a4b2a" stroke="#2b2a22" stroke-width="2.5"/>
+                <path d="M162 332v24M258 332v24" stroke="#2b2a22" stroke-width="5"/>
+                <path d="M186 302C188 312 198 318 210 318C222 318 232 312 234 302Z" fill="#fbf8ef" stroke="#2b2a22" stroke-width="2"/>
+                <path d="M190 308C200 312 220 312 230 308" fill="none" stroke="#2f7f7a" stroke-width="2.5"/>
               </g>
-              <g transform="translate(400 400) scale(1.28) translate(-400 -400)">
-              <g class="cough">
-                <path d="M316 400C310 324 340 266 372 248L428 248C460 266 490 324 484 400Z" fill="#8f6aa6" stroke="#2b2a22" stroke-width="2.5" stroke-linejoin="round"/>
-                <path d="M330 320C360 306 440 306 470 320M322 356C360 342 440 342 478 356" fill="none" stroke="#f0c56a" stroke-width="5"/>
-                <use class="sk" href="#st-manhead" transform="translate(400 214)"/>
-                <g transform="translate(400 214)">
-                  <path d="M-17 -1q6 4 12 0M5 -1q6 4 12 0" fill="none" stroke="#2b2a22" stroke-width="2.5" stroke-linecap="round"/>
-                  <path d="M-19 -10L-7 -15M19 -10L7 -15" stroke="#2b2a22" stroke-width="2.5" stroke-linecap="round"/>
-                  <ellipse cx="0" cy="23" rx="5" ry="6" fill="#5a2a22"/>
-                  <path class="drop" d="M24 -24q5 7 0 10q-5 -3 0 -10Z" fill="#a9d3e0" stroke="#2b2a22" stroke-width="1.5"/>
+              <g transform="translate(400 404) scale(1.14) translate(-400 -404)">
+                <ellipse cx="400" cy="404" rx="112" ry="11" fill="#000" opacity=".13"/>
+                <g class="cough">
+                  <path d="M308 404C296 334 316 272 350 248C368 238 386 236 400 238C414 236 432 238 450 248C484 272 504 334 492 404Z" fill="#8f6aa6" stroke="#2b2a22" stroke-width="2.5" stroke-linejoin="round"/>
+                  <path d="M316 330C350 316 450 316 484 330L488 356C452 342 348 342 312 356Z" fill="url(#st-rug)" stroke="#2b2a22" stroke-width="2" stroke-linejoin="round"/>
+                  <path d="M402 240C406 282 410 332 406 404" fill="none" stroke="#2b2a22" stroke-width="2" opacity=".35"/>
+                  <path d="M450 248C484 272 504 334 492 404L454 404C468 340 460 284 432 244Z" fill="#000" opacity=".12"/>
+                  <path d="M342 272C334 302 332 330 336 362" fill="none" stroke="#fff" stroke-width="3" opacity=".22" stroke-linecap="round"/>
+                  <use class="sk" href="#st-man-head" transform="translate(400 196)"/>
+                  <g transform="translate(400 196)">
+                    <use href="#st-face-sick"/>
+                    <path class="drop" d="M24 -26q5 7 0 10q-5 -3 0 -10Z" fill="#a9d3e0" stroke="#2b2a22" stroke-width="1.5"/>
+                  </g>
+                  <path d="M430 250C440 244 440 234 432 228" fill="none" stroke="#2b2a22" stroke-width="15" stroke-linecap="round"/>
+                  <path d="M430 250C440 244 440 234 432 228" fill="none" stroke="#8f6aa6" stroke-width="11" stroke-linecap="round"/>
+                  <use class="sk" href="#st-hand" transform="translate(426 226) rotate(-160)"/>
                 </g>
-                <circle class="sk" cx="426" cy="250" r="12" stroke="#2b2a22" stroke-width="2.5"/>
-              </g>
-              <g class="puffs" fill="#ffffff" stroke="#8d8d8d" stroke-width="1.5">
-                <circle cx="446" cy="232" r="6"/>
-                <circle cx="464" cy="224" r="8"/>
-                <circle cx="486" cy="216" r="10"/>
-              </g>
+                <g class="puffs" fill="#ffffff" stroke="#8d8d8d" stroke-width="1.5">
+                  <circle cx="440" cy="218" r="6"/>
+                  <circle cx="458" cy="210" r="8"/>
+                  <circle cx="480" cy="202" r="10"/>
+                </g>
               </g>
               <rect class="gloom" width="800" height="450" fill="#5c6b78" opacity=".2"/>
             </g>
@@ -206,18 +268,24 @@
                   <ellipse cx="336" cy="161" rx="5" ry="4"/><ellipse cx="337" cy="153" rx="4" ry="4"/>
                 </g>
               </g>
-              <g class="walk-in" transform="translate(476 188)">
-                <use href="#st-elderbody"/>
-                <path d="M-12 46Q-30 64 -44 82" fill="none" stroke="#2b2a22" stroke-width="13" stroke-linecap="round"/>
-                <path d="M-12 46Q-30 64 -44 82" fill="none" stroke="#4a3a2a" stroke-width="9" stroke-linecap="round"/>
-                <g transform="translate(-46 84)">
+              <g class="walk-in" transform="translate(486 132)">
+                <ellipse cx="0" cy="207" rx="58" ry="8" fill="#000" opacity=".15"/>
+                <use href="#st-mom-body"/>
+                <path d="M-24 62C-40 76 -52 90 -60 102" fill="none" stroke="#2b2a22" stroke-width="17" stroke-linecap="round"/>
+                <path d="M-24 62C-40 76 -52 90 -60 102" fill="none" stroke="#b5532f" stroke-width="13" stroke-linecap="round"/>
+                <path d="M22 64C10 82 -14 104 -34 116" fill="none" stroke="#2b2a22" stroke-width="17" stroke-linecap="round"/>
+                <path d="M22 64C10 82 -14 104 -34 116" fill="none" stroke="#b5532f" stroke-width="13" stroke-linecap="round"/>
+                <g transform="translate(-62 104)">
                   <g class="dig">
-                    <path d="M0 0L-48 70" stroke="#7a4b2a" stroke-width="7" stroke-linecap="round"/>
-                    <path d="M-58 62L-38 76L-48 94L-66 80Z" fill="#a7adb2" stroke="#2b2a22" stroke-width="2.5" stroke-linejoin="round"/>
-                    <circle r="8" fill="#d6a882" stroke="#2b2a22" stroke-width="2.2"/>
+                    <path d="M0 0L-58 92" stroke="#7a4b2a" stroke-width="7" stroke-linecap="round"/>
+                    <path d="M28 14L-4 4" stroke="#7a4b2a" stroke-width="7" stroke-linecap="round"/>
+                    <path d="M-70 84L-48 98L-58 118L-78 102Z" fill="#a7adb2" stroke="#2b2a22" stroke-width="2.5" stroke-linejoin="round"/>
+                    <path d="M-66 92L-56 98" stroke="#fff" stroke-width="2" opacity=".5"/>
+                    <use href="#st-hand" fill="#d6a882" transform="rotate(30)"/>
+                    <use href="#st-hand" fill="#d6a882" transform="translate(26 14) rotate(20)"/>
                   </g>
                 </g>
-                <use href="#st-elderhead"/>
+                <use href="#st-mom-head"/>
               </g>
             </g>
 
@@ -237,6 +305,7 @@
                 <ellipse cx="368" cy="432" rx="26" ry="14"/><ellipse cx="492" cy="432" rx="26" ry="14"/><ellipse cx="430" cy="442" rx="30" ry="12"/>
               </g>
               <path d="M350 316Q350 396 430 398Q510 396 510 316Z" fill="#2b2a22"/>
+              <path d="M360 330Q364 384 410 392" fill="none" stroke="#fff" stroke-width="4" opacity=".14" stroke-linecap="round"/>
               <rect x="340" y="306" width="180" height="14" rx="7" fill="#46423a" stroke="#2b2a22" stroke-width="2"/>
               <path d="M340 316q-14 0 -14 12M520 316q14 0 14 12" fill="none" stroke="#2b2a22" stroke-width="5"/>
               <g class="pieces" fill="#e0a53c" stroke="#8a6440" stroke-width="1.5">
@@ -247,17 +316,22 @@
                 <use href="#st-steam" transform="translate(432 296)"/>
                 <use href="#st-steam" transform="translate(468 300)"/>
               </g>
-              <g transform="translate(240 180)">
-                <use href="#st-elderbody"/>
-                <path d="M12 46Q36 62 48 84" fill="none" stroke="#2b2a22" stroke-width="13" stroke-linecap="round"/>
-                <path d="M12 46Q36 62 48 84" fill="none" stroke="#4a3a2a" stroke-width="9" stroke-linecap="round"/>
-                <g transform="translate(50 86)">
+              <g transform="translate(232 150)">
+                <ellipse cx="0" cy="207" rx="58" ry="8" fill="#000" opacity=".15"/>
+                <use href="#st-mom-body"/>
+                <path d="M-24 62C-36 84 -36 106 -22 120" fill="none" stroke="#2b2a22" stroke-width="17" stroke-linecap="round"/>
+                <path d="M-24 62C-36 84 -36 106 -22 120" fill="none" stroke="#b5532f" stroke-width="13" stroke-linecap="round"/>
+                <use href="#st-hand" fill="#d6a882" transform="translate(-20 124) rotate(-20)"/>
+                <path d="M24 62C40 72 50 84 56 96" fill="none" stroke="#2b2a22" stroke-width="17" stroke-linecap="round"/>
+                <path d="M24 62C40 72 50 84 56 96" fill="none" stroke="#b5532f" stroke-width="13" stroke-linecap="round"/>
+                <g transform="translate(58 98)">
                   <g class="stir">
-                    <path d="M0 0L118 52" stroke="#7a4b2a" stroke-width="6" stroke-linecap="round"/>
-                    <circle r="8" fill="#d6a882" stroke="#2b2a22" stroke-width="2.2"/>
+                    <path d="M0 0L118 64" stroke="#7a4b2a" stroke-width="6" stroke-linecap="round"/>
+                    <path d="M110 58C112 70 126 74 132 66" fill="#7a4b2a" stroke="#2b2a22" stroke-width="1.5"/>
+                    <use href="#st-hand" fill="#d6a882" transform="rotate(-60)"/>
                   </g>
                 </g>
-                <use href="#st-elderhead"/>
+                <use href="#st-mom-head"/>
               </g>
               <g class="chips" font-family="PT Sans, sans-serif" font-size="19" font-weight="700" fill="#2b2a22">
                 <g class="chip c1"><rect x="560" y="96" width="196" height="40" rx="20" fill="#fbf8ef" stroke="#a9772e" stroke-width="2"/><text x="658" y="122" text-anchor="middle">1 шай қасық мия</text></g>
@@ -276,29 +350,38 @@
               <rect y="64" width="800" height="16" fill="url(#st-band)"/>
               <rect y="334" width="800" height="116" fill="#c9a86b"/>
               <path d="M140 362L660 362L720 450L80 450Z" fill="url(#st-rug)" stroke="#2b2a22" stroke-width="2.5"/>
-              <g transform="translate(450 400) scale(1.22) translate(-450 -400)">
-              <path d="M300 404C296 352 312 316 340 300L360 340L440 340L460 300C488 316 504 352 500 404Z" fill="#8f6aa6" stroke="#2b2a22" stroke-width="2.5" stroke-linejoin="round"/>
-              <path class="ch" d="M330 392C326 320 348 266 374 250L426 250C452 266 474 320 470 392Z" stroke="#2b2a22" stroke-width="2.5" stroke-linejoin="round"/>
-              <path d="M386 250L400 276L414 250Z" fill="#f4efe3" stroke="#2b2a22" stroke-width="2"/>
-              <path d="M356 272Q350 250 362 236M444 272Q450 250 438 236" fill="none" stroke="#2b2a22" stroke-width="18" stroke-linecap="round"/>
-              <path class="chs" d="M356 272Q350 250 362 236M444 272Q450 250 438 236" fill="none" stroke-width="13" stroke-linecap="round"/>
-              <use class="sk" href="#st-manhead" transform="translate(400 200)"/>
-              <g transform="translate(400 200)">
-                <path d="M-17 -2q6 -5 12 0M5 -2q6 -5 12 0" fill="none" stroke="#2b2a22" stroke-width="2.5" stroke-linecap="round"/>
-                <path d="M-18 -13L-6 -14M18 -13L6 -14" stroke="#2b2a22" stroke-width="2.5" stroke-linecap="round"/>
+              <g transform="translate(440 404) scale(1.14) translate(-440 -404)">
+                <ellipse cx="400" cy="404" rx="112" ry="11" fill="#000" opacity=".13"/>
+                <path class="ch" d="M318 404C312 332 330 276 360 258L440 258C470 276 488 332 482 404Z" stroke="#2b2a22" stroke-width="2.5" stroke-linejoin="round"/>
+                <path d="M440 258C470 276 488 332 482 404L450 404C460 340 452 290 428 262Z" fill="#000" opacity=".14"/>
+                <path d="M384 258L400 290L416 258Z" fill="#f4efe3" stroke="#2b2a22" stroke-width="2"/>
+                <path d="M380 258L400 300L420 258" fill="none" stroke="#d9a03a" stroke-width="3"/>
+                <path d="M300 404C298 370 316 350 340 346L460 346C484 350 502 370 500 404Z" fill="#8f6aa6" stroke="#2b2a22" stroke-width="2.5" stroke-linejoin="round"/>
+                <path d="M314 380C360 372 440 372 486 380" fill="none" stroke="#f0c56a" stroke-width="5"/>
+                <use class="sk" href="#st-man-head" transform="translate(400 192)"/>
+                <use href="#st-face-calm" transform="translate(400 192)"/>
+                <path d="M354 272C340 258 346 240 364 232M446 272C460 258 454 240 436 232" fill="none" stroke="#2b2a22" stroke-width="19" stroke-linecap="round"/>
+                <path class="chs" d="M354 272C340 258 346 240 364 232M446 272C460 258 454 240 436 232" fill="none" stroke-width="14" stroke-linecap="round"/>
+                <g class="sip">
+                  <path d="M362 214C364 240 380 254 400 254C420 254 436 240 438 214Z" fill="#fbf8ef" stroke="#2b2a22" stroke-width="2.5" stroke-linejoin="round"/>
+                  <path d="M366 226C376 236 424 236 434 226" fill="none" stroke="#2f7f7a" stroke-width="4"/>
+                  <ellipse cx="400" cy="214" rx="38" ry="6" fill="#c69a5c" stroke="#2b2a22" stroke-width="2"/>
+                  <use class="sk" href="#st-hand" transform="translate(366 234) rotate(70)"/>
+                  <use class="sk" href="#st-hand" transform="translate(434 234) rotate(-70) scale(-1 1)"/>
+                </g>
+                <g class="steam4"><use href="#st-steam" transform="translate(452 214) scale(.6)"/><use href="#st-steam" transform="translate(466 220) scale(.6)"/></g>
               </g>
-              <g class="sip">
-                <path d="M360 220Q400 276 440 220Z" fill="#fbf8ef" stroke="#2b2a22" stroke-width="2.5" stroke-linejoin="round"/>
-                <path d="M366 230Q400 256 434 230" fill="none" stroke="#2f7f7a" stroke-width="4"/>
-                <circle class="sk" cx="362" cy="234" r="11" stroke="#2b2a22" stroke-width="2.2"/>
-                <circle class="sk" cx="438" cy="234" r="11" stroke="#2b2a22" stroke-width="2.2"/>
-              </g>
-              <g class="steam4"><use href="#st-steam" transform="translate(448 222) scale(.6)"/><use href="#st-steam" transform="translate(462 228) scale(.6)"/></g>
-              <g transform="translate(570 236)">
-                <path d="M-44 158C-48 104 -30 60 -18 34L18 34C30 60 48 104 44 158Z" fill="#b5532f" stroke="#2b2a22" stroke-width="2.5" stroke-linejoin="round"/>
-                <path d="M-18 34L18 34L22 86L-22 86Z" fill="#4a3a2a" stroke="#2b2a22" stroke-width="2.5"/>
-                <use href="#st-elderhead"/>
-              </g>
+              <g transform="translate(596 196)">
+                <ellipse cx="0" cy="168" rx="60" ry="8" fill="#000" opacity=".15"/>
+                <path d="M-52 166C-56 116 -42 76 -30 52L30 52C42 76 56 116 52 166Z" fill="#b5532f" stroke="#2b2a22" stroke-width="2.4" stroke-linejoin="round"/>
+                <path d="M30 52C42 76 56 116 52 166L26 166C30 120 26 80 18 58Z" fill="#000" opacity=".12"/>
+                <path d="M-30 52C-32 76 -30 100 -26 116L26 116C30 100 32 76 30 52Z" fill="#3f5a3c" stroke="#2b2a22" stroke-width="2.4" stroke-linejoin="round"/>
+                <path d="M-27 56C-29 78 -27 98 -24 112L24 112C27 98 29 78 27 56" fill="none" stroke="#d9a03a" stroke-width="2.2"/>
+                <path d="M-24 62C-34 84 -30 106 -12 118M24 62C34 84 30 106 12 118" fill="none" stroke="#2b2a22" stroke-width="17" stroke-linecap="round"/>
+                <path d="M-24 62C-34 84 -30 106 -12 118M24 62C34 84 30 106 12 118" fill="none" stroke="#b5532f" stroke-width="13" stroke-linecap="round"/>
+                <use href="#st-hand" fill="#d6a882" transform="translate(-6 122) rotate(-80)"/>
+                <use href="#st-hand" fill="#d6a882" transform="translate(6 124) rotate(80) scale(-1 1)"/>
+                <use href="#st-mom-head"/>
               </g>
               <rect class="gloom" width="800" height="450" fill="#5c6b78"/>
               </g>
@@ -319,37 +402,44 @@
               <path d="M0 290Q200 236 420 280T800 262L800 450L0 450Z" fill="#c2b85e"/>
               <path d="M0 356Q240 318 480 352T800 340L800 450L0 450Z" fill="#8f9a4a"/>
               <path d="M0 316Q300 300 520 322T800 310" fill="none" stroke="#6aa3b5" stroke-width="10" stroke-linecap="round"/>
-              <g transform="translate(160 268)">
+              <g transform="translate(150 268)">
                 <path d="M-46 30V0Q-46 -36 0 -40Q46 -36 46 0V30Z" fill="#fbf8ef" stroke="#2b2a22" stroke-width="2.5"/>
                 <rect x="-46" y="-2" width="92" height="9" fill="url(#st-band)"/>
                 <path d="M-10 30V10H10V30" fill="#b5532f" stroke="#2b2a22" stroke-width="2"/>
               </g>
-              <g fill="#e07c63"><circle cx="90" cy="400" r="5"/><circle cx="250" cy="420" r="4"/><circle cx="640" cy="404" r="5"/><circle cx="720" cy="430" r="4"/></g>
-              <g fill="#f3ecdc"><circle cx="120" cy="424" r="4"/><circle cx="600" cy="430" r="4"/><circle cx="300" cy="396" r="3"/></g>
-              <g class="hero-man" transform="translate(400 176)">
-                <path d="M-24 196V210H-6V196M6 196V210H24V196" fill="#2b2a22"/>
-                <path class="ch" d="M-40 198L-30 38L30 38L40 198Z" stroke="#2b2a22" stroke-width="2.5" stroke-linejoin="round"/>
-                <path d="M-14 38L0 62L14 38Z" fill="#f4efe3" stroke="#2b2a22" stroke-width="2"/>
-                <rect x="-34" y="104" width="68" height="10" fill="#d9a03a" stroke="#2b2a22" stroke-width="2"/>
-                <path d="M-26 46Q-46 80 -44 116" fill="none" stroke="#2b2a22" stroke-width="18" stroke-linecap="round"/>
-                <path class="chs" d="M-26 46Q-46 80 -44 116" fill="none" stroke-width="13" stroke-linecap="round"/>
-                <circle class="sk" cx="-44" cy="120" r="10" stroke="#2b2a22" stroke-width="2.2"/>
-                <g transform="translate(26 48)">
+              <g fill="#e07c63"><circle cx="90" cy="400" r="5"/><circle cx="250" cy="420" r="4"/><circle cx="660" cy="404" r="5"/><circle cx="740" cy="430" r="4"/></g>
+              <g fill="#f3ecdc"><circle cx="120" cy="424" r="4"/><circle cx="620" cy="430" r="4"/><circle cx="300" cy="396" r="3"/></g>
+              <ellipse cx="400" cy="384" rx="56" ry="8" fill="#000" opacity=".14"/>
+              <g class="hero-man" transform="translate(400 160)">
+                <path d="M-26 196V214H-6V196ZM6 196V214H26V196Z" fill="#3a3229" stroke="#2b2a22" stroke-width="2"/>
+                <path d="M-28 214H-4V222H-34Q-34 214 -28 214ZM28 214H4V222H34Q34 214 28 214Z" fill="#5a3a22" stroke="#2b2a22" stroke-width="2" stroke-linejoin="round"/>
+                <path class="ch" d="M-40 200L-31 48C-20 42 20 42 31 48L40 200Z" stroke="#2b2a22" stroke-width="2.5" stroke-linejoin="round"/>
+                <path d="M31 48L40 200L14 200C18 150 18 90 12 50Z" fill="#000" opacity=".14"/>
+                <path d="M-14 46L0 74L14 46Z" fill="#f4efe3" stroke="#2b2a22" stroke-width="2"/>
+                <path d="M-18 46L0 84L18 46M0 84V200" fill="none" stroke="#d9a03a" stroke-width="3"/>
+                <path d="M-36 110C-12 104 12 104 36 110L36 122C12 116 -12 116 -36 122Z" fill="#d9a03a" stroke="#2b2a22" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M8 120L14 150L4 148L0 120Z" fill="#d9a03a" stroke="#2b2a22" stroke-width="1.6" stroke-linejoin="round"/>
+                <path d="M-28 56C-44 84 -46 108 -42 128" fill="none" stroke="#2b2a22" stroke-width="19" stroke-linecap="round"/>
+                <path class="chs" d="M-28 56C-44 84 -46 108 -42 128" fill="none" stroke-width="14" stroke-linecap="round"/>
+                <use class="sk" href="#st-hand" transform="translate(-42 134)"/>
+                <g transform="translate(28 58)">
                   <g class="wave">
-                    <path d="M0 0Q26 -20 34 -62" fill="none" stroke="#2b2a22" stroke-width="18" stroke-linecap="round"/>
-                    <path class="chs" d="M0 0Q26 -20 34 -62" fill="none" stroke-width="13" stroke-linecap="round"/>
-                    <circle class="sk" cx="35" cy="-68" r="10" stroke="#2b2a22" stroke-width="2.2"/>
+                    <path d="M0 0C20 -14 30 -36 32 -64" fill="none" stroke="#2b2a22" stroke-width="19" stroke-linecap="round"/>
+                    <path class="chs" d="M0 0C20 -14 30 -36 32 -64" fill="none" stroke-width="14" stroke-linecap="round"/>
+                    <use class="sk" href="#st-hand" transform="translate(33 -72) rotate(180)"/>
                   </g>
                 </g>
-                <use class="sk" href="#st-manhead"/>
-                <path d="M-17 0q6 -7 12 0M5 0q6 -7 12 0" fill="none" stroke="#2b2a22" stroke-width="2.5" stroke-linecap="round"/>
-                <path d="M-11 20Q0 30 11 20" fill="none" stroke="#2b2a22" stroke-width="2.5" stroke-linecap="round"/>
-                <circle cx="-20" cy="12" r="5" fill="#e07c63" opacity=".45"/>
-                <circle cx="20" cy="12" r="5" fill="#e07c63" opacity=".45"/>
+                <use class="sk" href="#st-man-head"/>
+                <use href="#st-face-happy"/>
               </g>
-              <g class="fade-late" transform="translate(560 212)">
-                <use href="#st-elderbody"/>
-                <use href="#st-elderhead"/>
+              <ellipse cx="570" cy="384" rx="56" ry="8" fill="#000" opacity=".14"/>
+              <g class="fade-late" transform="translate(570 172)">
+                <use href="#st-mom-body"/>
+                <path d="M-24 62C-34 84 -30 102 -10 110M24 62C34 84 30 102 10 110" fill="none" stroke="#2b2a22" stroke-width="17" stroke-linecap="round"/>
+                <path d="M-24 62C-34 84 -30 102 -10 110M24 62C34 84 30 102 10 110" fill="none" stroke="#b5532f" stroke-width="13" stroke-linecap="round"/>
+                <use href="#st-hand" fill="#d6a882" transform="translate(-4 112) rotate(-90)"/>
+                <use href="#st-hand" fill="#d6a882" transform="translate(4 112) rotate(90) scale(-1 1)"/>
+                <use href="#st-mom-head"/>
               </g>
               <text class="motto" x="40" y="70" font-family="Cormorant Garamond, serif" font-size="44" font-style="italic" font-weight="600" fill="#3d4c2a">Дені саудың — жаны сау!</text>
             </g>
@@ -553,8 +643,8 @@
 </footer>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="js/data.js?v=9"></script>
-<script src="js/app.js?v=9"></script>
-<script src="js/story.js?v=9"></script>
+<script src="js/data.js?v=10"></script>
+<script src="js/app.js?v=10"></script>
+<script src="js/story.js?v=10"></script>
 </body>
 </html>
