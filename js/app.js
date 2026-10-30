@@ -37,11 +37,11 @@ function renderGrid() {
   const f = FILTERS.find((x) => x.id === filter).f;
   const list = PLANTS.filter((p) => f(p) && (!q || [p.kk, p.full, p.ru, p.lat].join(" ").toLowerCase().includes(q)));
   $("#grid").innerHTML = list.length
-    ? list.map((p) => {
+    ? list.map((p, k) => {
         const im = cardImg(p);
-        return `<a class="card reveal" href="plant.html?id=${p.id}">
+        return `<a class="card reveal" data-part="${p.part[0]}" style="transition-delay:${(k % 4) * 70}ms" href="plant.html?id=${p.id}">
           <div class="pic${im.photo ? " photo" : ""}"><img loading="lazy" src="${COMMONS(im.file, 500)}" alt="${esc(p.kk)}"></div>
-          <div class="no"><span>№ ${pad(PLANTS.indexOf(p) + 1)}</span>${p.toxic ? '<span class="warn-dot">● улы</span>' : ""}</div>
+          <div class="no"><span>№ ${pad(PLANTS.indexOf(p) + 1)}</span>${p.toxic ? '<span class="warn-dot">● улы</span>' : `<span class="part">${esc(p.part[0])}</span>`}</div>
           <h3>${esc(p.kk)}</h3>
           <div class="lat">${esc(p.lat)}</div>
           <p>${esc(p.short)}</p>
@@ -138,3 +138,28 @@ addEventListener("scroll", () => {
   secs.forEach((s, i) => { if (s && s.offsetTop <= y) cur = i; });
   navLinks.forEach((a, i) => a.classList.toggle("on", i === cur));
 }, { passive: true });
+
+/* ---------- Қозғалыс: параллакс, карточка еңкеюі ---------- */
+const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
+if (!calm) {
+  const sheet = document.querySelector(".hero .sheet");
+  addEventListener("scroll", () => {
+    if (sheet && scrollY < 900) sheet.style.transform = `translateY(${scrollY * 0.12}px) rotate(${1.2 + scrollY * 0.004}deg)`;
+  }, { passive: true });
+
+  if (matchMedia("(hover: hover)").matches) {
+    $("#grid").addEventListener("pointermove", (e) => {
+      const c = e.target.closest(".card");
+      if (!c) return;
+      c.style.transitionDelay = "0s";
+      const r = c.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top) / r.height - 0.5;
+      c.style.transform = `perspective(700px) rotateY(${x * 7}deg) rotateX(${-y * 7}deg) translateY(-4px)`;
+    });
+    $("#grid").addEventListener("pointerout", (e) => {
+      const c = e.target.closest(".card");
+      if (c && !c.contains(e.relatedTarget)) c.style.transform = "";
+    });
+  }
+}
